@@ -1,0 +1,25 @@
+operation_point: "B_plus_writeback"
+
+serve:
+  reasoning: true
+  reasoning_parser: "deepseek_r1"
+  enable_auto_tool_choice: true
+  tool_call_parser: "hermes"
+  vllm_version: "0.8.5.post1"
+  image_sha256: "7a5b943d752a54f7fb6f75315fd53be5c960f0913e0754f568eec334031ffbb6"
+
+agent:
+  thinking: "on"
+  tool_choice: "auto"
+  max_tokens: 8192
+  temperature: 0.6
+  sampling:
+    top_p: 0.95
+    top_k: 20
+    min_p: 0
+  seed_mode: "crn"
+  strip_history_thinking: true
+
+writeback:
+  reasoning_content_to_trace: true
+  reasoning_content_to_prompt: false

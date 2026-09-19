@@ -1,0 +1,38 @@
+agent:
+  type: "vllm"
+  model: "qwen3-8b"
+  temperature: 0.6
+  max_tokens: 8192
+  api_key: "EMPTY"
+  base_url: "${DAR_VLLM_BASE_URL}"
+
+dar:
+  timeout_s: 300
+  enable_thinking: null
+
+judge:
+  model: "qwen3-8b"
+  temperature: 0
+  api_key: "EMPTY"
+  base_url: ""
+
+execution:
+  max_rounds: 25
+  timeout_per_round: 1000
+
+data:
+  task_dir: "${DAR_TASK_DIR}"
+  output_dir: "${DAR_OUTPUT_DIR}"
+  task_category: "c1"
+  tools_dir: "${DAR_TOOLS_DIR}"
+  template_dir: "${DAR_TEMPLATE_DIR}"
+
+evaluation:
+  modes: ["P1", "P2", "P3", "P4"]
+  parallel: true
+  max_workers: 4
+  save_traces: true
+
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"

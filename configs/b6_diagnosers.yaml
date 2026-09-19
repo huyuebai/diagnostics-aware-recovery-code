@@ -1,0 +1,56 @@
+measurement:
+  corpus_root: "data/b5-11090655"
+  main_arm: "fa/none"
+  subset_seed: 20260813
+  tasks_per_cell: 25
+  expected_units: 500
+  max_expected_diagnoses: 600
+
+empirical_matrix:
+  emit_counts: true
+  emit_rownorm: true
+  smoothing_alpha: 0
+  refuse_zero_observation_row: true
+
+ml:
+  l2: 0.0001
+  learning_rate: 0.1
+  max_epochs: 200000
+  tol: 1.0e-9
+  gradient_scale: "mean"
+  regularize_bias: false
+  k_folds: 5
+  fold_unit: "base_task_id"
+  fold_seed: 20260813
+  stratify_by: "cat"
+
+llm:
+  local:
+    model: "qwen3-8b"
+    temperature: 0.6
+    top_p: 0.95
+    top_k: 20
+    min_p: 0
+    max_tokens: 2048
+    parse_retries: 1
+  api:
+    provider: "openai"
+    model: "gpt-5.4-2026-03-05"
+    use_batch: true
+    max_budget_usd: 50
+    parse_retries: 0
+    forbidden_model_substrings: ["qwen", "Qwen"]
+    max_completion_tokens: 2048
+    reasoning_effort: "low"
+    batch_completion_window: "24h"
+
+pricing:
+  basis_note: " +  + configs/b6_diagnosers.yaml::pricing"
+  openai_batch_effective_usd_per_mtok: 0.690
+  openai_price_in_per_m_usd: 2.5
+  openai_price_out_per_m_usd: 15.0
+  batch_discount_factor: 0.5
+  prompt_cache: false
+  qwen3_8b_price_in_per_m_usd: 0.117
+  qwen3_8b_price_out_per_m_usd: 0.455
+  qwen3_8b_price_quoted_on: "2026-08-28"
